@@ -120,7 +120,7 @@ export function normalisasi(input: unknown): AppData {
         estimasiMenit: Math.max(0, Math.round(num(t.estimasiMenit, 30))),
         catatan: str(t.catatan),
         status: (["belum", "dikerjakan", "selesai"].includes(t.status) ? t.status : "belum") as StatusPR,
-        selesaiPada: str(t.selesaiPada) || undefined,
+        ...(str(t.selesaiPada) ? { selesaiPada: str(t.selesaiPada) } : {}),
       })),
     ujian: arr<Ujian>(o.ujian)
       .filter((u) => u && typeof u === "object" && str(u.nama).trim() !== "")
@@ -164,7 +164,7 @@ export function normalisasi(input: unknown): AppData {
           .filter((c) => c && str(c.teks).trim() !== "")
           .map((c) => ({ id: str(c.id) || idBaru(), teks: str(c.teks).trim(), selesai: bool(c.selesai) })),
         catatan: str(p.catatan),
-        selesaiPada: str(p.selesaiPada) || undefined,
+        ...(str(p.selesaiPada) ? { selesaiPada: str(p.selesaiPada) } : {}),
       })),
     catatan: arr<Catatan>(o.catatan)
       .filter((c) => c && typeof c === "object" && str(c.judul).trim() !== "" || str(c.isi).trim() !== "")
@@ -317,7 +317,7 @@ export function imporJSON(mentah: string): AppData {
     throw new Error("File bukan cadangan yang valid (format JSON salah).");
   }
   const o = obj as Record<string, unknown>;
-  if (!o || typeof o !== "object" || (!o.versi && !o.profil && !o.jadwal)) {
+  if (!o || typeof o !== "object" || (!o["versi"] && !o["profil"] && !o["jadwal"])) {
     throw new Error("File ini bukan cadangan Teman Belajarku.");
   }
   const hasil = normalisasi(o);
