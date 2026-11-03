@@ -17,7 +17,7 @@ import {
   SectionTitle,
   Segmented,
 } from "@/components/ui/kit";
-import { NAMA_HARI, hitungStreak, mingguBerici, todayISO } from "@/lib/dates";
+import { NAMA_HARI, hitungStreak, mingguBerisi, todayISO } from "@/lib/dates";
 import { idBaru, mutate, useAppData } from "@/lib/store";
 import type { Kebiasaan } from "@/lib/types";
 

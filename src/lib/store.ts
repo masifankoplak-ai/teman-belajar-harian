@@ -4,6 +4,7 @@
 
 import { useSyncExternalStore } from "react";
 import type {
+  Aktivitas,
   AppData,
   Catatan,
   CeklisItem,
@@ -105,7 +106,7 @@ export function normalisasi(input: unknown): AppData {
         ruang: str(j.ruang),
         jamMulai: str(j.jamMulai, "07:00"),
         jamSelesai: str(j.jamSelesai, "08:00"),
-        warna: PALET_WARNA.includes(j.warna) ? j.warna : PALET_WARNA[0],
+        warna: PALET_WARNA.includes(j.warna) ? j.warna : (PALET_WARNA[0] ?? "#367FC4"),
       })),
     pr: arr<PR>(o.pr)
       .filter((t) => t && typeof t === "object" && str(t.judul).trim() !== "")
@@ -138,7 +139,7 @@ export function normalisasi(input: unknown): AppData {
           .filter((c) => c && str(c.teks).trim() !== "")
           .map((c) => ({ id: str(c.id) || idBaru(), teks: str(c.teks).trim(), selesai: bool(c.selesai) })),
       })),
-    aktivitas: arr(o.aktivitas)
+    aktivitas: arr<Aktivitas>(o.aktivitas)
       .filter((a) => a && typeof a === "object" && str(a.judul).trim() !== "")
       .map((a) => ({
         id: str(a.id) || idBaru(),
@@ -278,7 +279,7 @@ export function warnaMapel(data: AppData, mapel: string): string {
   if (item) return item.warna;
   const semua = daftarMapel(data);
   const i = semua.findIndex((m) => m.toLowerCase() === mapel.toLowerCase());
-  return PALET_WARNA[(i >= 0 ? i : semua.length) % PALET_WARNA.length];
+  return PALET_WARNA[(i >= 0 ? i : semua.length) % PALET_WARNA.length] ?? "#367FC4";
 }
 
 /** Daftar nama mata pelajaran unik dari jadwal + PR + ujian (terurut abjad). */
