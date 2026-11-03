@@ -49,6 +49,6 @@ export function navigate(tujuan: string): void {
 
 /** Pecah jalur jadi path & query, mis. "/tugas?baru=1" -> {path:"/tugas", query:URLSearchParams}. */
 export function pecahJalur(jalur: string): { path: string; query: URLSearchParams } {
-  const [path, q = ""] = jalur.split("?");
+  const [path = "/beranda", q = ""] = jalur.split("?");
   return { path, query: new URLSearchParams(q) };
 }

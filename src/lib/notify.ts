@@ -67,16 +67,16 @@ export async function aturUlangPengingat(data: AppData): Promise<void> {
   if (!p) return;
   try {
     const pending = await p.LocalNotifications.getPending();
-    const milikKita = pending.notifications.filter((n) => (n.extra as Record<string, unknown>)?.aplikasi === PENANDA);
+    const milikKita = pending.notifications.filter((n) => (n.extra as Record<string, unknown>)?.["aplikasi"] === PENANDA);
     if (milikKita.length) {
-      await p.LocalNotifications.cancel(milikKita.map((n) => ({ id: n.id })));
+      await p.LocalNotifications.cancel({ notifications: milikKita.map((n) => ({ id: n.id })) });
     }
   } catch {
     /* lanjut tanpa membatalkan */
   }
 
   const hariIni = todayISO();
-  const daftar: import("@capacitor/local-notifications").ScheduleOptions[] = [];
+  const daftar: import("@capacitor/local-notifications").LocalNotificationSchema[] = [];
   let nomor = 1;
   const tambah = (tanggalISO: string, judul: string, isi: string) => {
     const at = tanggalDari(tanggalISO, data.notifikasi.jamPengingat);

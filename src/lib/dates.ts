@@ -24,8 +24,8 @@ export function toISO(d: Date): string {
 
 /** Parse "yyyy-mm-dd" menjadi Date lokal (jam 12 siang agar aman dari pergeseran zona). */
 export function parseISO(iso: string): Date {
-  const [y, m, d] = iso.split("-").map(Number);
-  return new Date(y, (m || 1) - 1, d || 1, 12, 0, 0);
+  const [y = 1970, m = 1, d = 1] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d, 12, 0, 0);
 }
 
 /** Indeks hari (0 = Senin) dari objek Date. */
