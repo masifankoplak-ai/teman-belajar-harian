@@ -30,7 +30,7 @@ const formKosong = (): FormKebiasaan => ({ nama: "", jenis: "harian", targetPerM
 export function HalamanBelajar() {
   const data = useAppData();
   const hariIni = todayISO();
-  const minggu = mingguBerici(hariIni);
+  const minggu = mingguBerisi(hariIni);
   const [form, setForm] = useState<FormKebiasaan | null>(null);
   const [editId, setEditId] = useState<string | null>(null);
   const [hapusId, setHapusId] = useState<string | null>(null);
