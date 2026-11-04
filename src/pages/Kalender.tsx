@@ -40,8 +40,6 @@ const WARNA_TITIK: Record<Acara["jenis"], string> = {
 
 type FormAktivitas = { judul: string; jam: string; jenis: JenisAktivitas; catatan: string };
 
-const formKosong = (tanggal: string): FormAktivitas => ({ judul: "", jam: "", jenis: "Kegiatan Sekolah", catatan: "", ...{} }) && { judul: "", jam: "", jenis: "Kegiatan Sekolah", catatan: "", tanggal };
-
 export function HalamanKalender() {
   const data = useAppData();
   const hariIni = todayISO();

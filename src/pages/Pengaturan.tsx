@@ -6,8 +6,8 @@ import { toast } from "sonner";
 
 import { Button, Card, ConfirmDialog, Field, Input, SectionTitle, Segmented, Select } from "@/components/ui/kit";
 import { aturUlangPengingat, izinkanNotifikasi, perangkatNative } from "@/lib/notify";
-import { VERSI_DATA, getData, imporJSON, mutate, resetData, setTema, unduhCadangan, useAppData } from "@/lib/store";
-import type { Jenjang, Tema } from "@/lib/types";
+import { VERSI_DATA, getData, imporJSON, mutate, resetData, setTema, unduhCadangan, useAppData, type Tema } from "@/lib/store";
+import type { Jenjang, Notifikasi } from "@/lib/types";
 
 const JENJANG: Jenjang[] = ["SD", "SMP", "SMA", "SMK"];
 const HARI_PILIH = [0, 1, 2, 3, 5, 7];
@@ -66,17 +66,9 @@ export function HalamanPengaturan() {
     toast.success("Profil disimpan.");
   };
 
-  const ubahNotifikasi = (fn: (n: AppData["notifikasi"]) => void) => {
+  const ubahNotifikasi = (fn: (n: Notifikasi) => void) => {
     mutate((d) => fn(d.notifikasi));
     void aturUlangPengingat(getData());
-  };
-
-  const toggleHari = (daftar: number[], n: number, set: (v: number[]) => void) => {
-    ubahNotifikasi((n2) => {
-      void daftar;
-      void set;
-      n2[keyHari(n)] = [];
-    });
   };
 
   return (
