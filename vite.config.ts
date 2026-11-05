@@ -11,5 +11,8 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // Aplikasi ini 100% klien (hash router + LocalStorage) — mode SPA membuat
+    // dist/client/index.html statis, yang juga dipakai Capacitor/Android Studio.
+    spa: { enabled: true },
   },
 });
