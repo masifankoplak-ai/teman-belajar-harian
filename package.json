@@ -7,6 +7,9 @@
     "dev": "vite dev",
     "build": "vite build && cp dist/client/_shell.html dist/client/index.html",
     "build:dev": "vite build --mode development",
+    "android:add": "bun run build && cap add android",
+    "android:sync": "bun run build && cap sync android",
+    "android:open": "cap open android",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -19,6 +22,8 @@
   "dependencies": {
     "@capacitor/core": "^8.6.0",
     "@capacitor/local-notifications": "^8.3.1",
+    "@fontsource-variable/baloo-2": "^5.3.0",
+    "@fontsource-variable/nunito": "^5.3.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",

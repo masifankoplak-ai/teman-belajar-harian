@@ -1,0 +1,4 @@
+- [x] Bundle the app fonts locally for offline Android use.
+- [ ] Generate and sync the Capacitor Android project.
+- [ ] Add Android Studio export commands and instructions.
+- [ ] Verify the built Android web assets work offline in a browser.
